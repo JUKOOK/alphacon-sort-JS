@@ -1,5 +1,5 @@
 <template>
-  <div class="sort-world" style="opacity: 0">
+  <div class="sort-world">
     <h1 class="title">정렬을 알아보자</h1>
     <button
       class="btn-sort"
@@ -9,20 +9,27 @@
     >
       {{ sort.name }}
     </button>
-    <!-- SortBoard : inputArr 시각자료 -->
+    <SortBoard :input-list="inputArr" :idx="index" />
   </div>
 </template>
 
 <script>
-import { getUnSorted } from "../utils";
-
 const UNSORTED = getUnSorted();
 
+import { getUnSorted } from "../utils";
+// import { bubbleSort } from "../core/bubble-sort";
+
+import SortBoard from "./SortBoard.vue";
+
 export default {
+  components: {
+    SortBoard,
+  },
   data() {
     var self = this;
     return {
-      inputArr: null,
+      inputArr: [],
+      index: 0,
       sorts: [
         {
           key: "bubble",
@@ -68,9 +75,10 @@ export default {
   methods: {
     resetInput() {
       this.inputArr = [...UNSORTED];
+      this.index = 0;
     },
     bubbleSort() {
-      console.log(this.inputArr);
+      console.log("버블");
     },
     insertionSort() {
       console.log("인");
@@ -87,21 +95,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
