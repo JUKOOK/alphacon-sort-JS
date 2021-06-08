@@ -1,9 +1,6 @@
 <template>
   <section class="sort-board">
-    <!-- <transition-group name="flip-list" tag="div"> -->
-    <div class="bar" v-for="(v, i) in list" :key="i" :style="barStyle(v)" />
-    <!-- </transition-group> -->
-
+    <div class="bar" v-for="idx in 20" :key="idx" :style="barStyle(idx)" />
     <div class="index-highlight"></div>
   </section>
 </template>
@@ -12,30 +9,32 @@
 export default {
   props: {
     inputList: Array,
-    idx: Number,
+    alpha: Number,
+    beta: Number,
   },
-  data() {
-    return {
-      list: [],
-    };
+  computed: {
+    list: {
+      get() {
+        return this.inputList;
+      },
+      set() {},
+    },
   },
   watch: {
-    inputList: {
-      // get, set..
-      deep: true,
-      handler(list) {
-        this.list = [...list];
-      },
+    alpha(v) {
+      console.log(`alpha: ${v}`);
+    },
+    beta(v) {
+      console.log(`beta: ${v}`);
     },
   },
   methods: {
-    barStyle(v) {
-      const x = 3.6 * v;
-      //   const x = v;
+    barStyle(idx) {
+      const listIdx = this.list.indexOf(idx);
+      const x = 4 * listIdx;
       return {
-        height: `${v}rem`,
+        height: `${this.list[listIdx] * 1.5}rem`,
         transform: `translateX(${x}rem)`,
-        // transition: "transform 0.3s",
       };
     },
   },
@@ -44,17 +43,16 @@ export default {
 
 <style lang="scss" scoped>
 .sort-board {
-  width: 107.6rem;
+  width: 79.3rem;
   height: 32rem;
   margin: 12rem auto 0 auto;
-  //   padding: 0 12rem;
   position: relative;
   .flip-list-move {
     transition: transform 1s;
   }
 
   .bar {
-    width: 3rem;
+    width: 3.2rem;
     min-height: 1rem;
     background-color: aquamarine;
     position: absolute;

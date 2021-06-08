@@ -9,7 +9,8 @@
     >
       {{ sort.name }}
     </button>
-    <SortBoard :input-list="inputArr" :idx="index" />
+    <button class="reset" @click="resetInput">reset</button>
+    <SortBoard :input-list="inputArr" :alpha="alphaIdx" :beta="betaIdx" />
   </div>
 </template>
 
@@ -17,7 +18,14 @@
 const UNSORTED = getUnSorted();
 
 import { getUnSorted } from "../utils";
-// import { bubbleSort } from "../core/bubble-sort";
+
+import {
+  bubbleSortMixin,
+  insertionSortMixin,
+  selectionSortMixin,
+  quickSortMixin,
+  mergeSortMixin,
+} from "../mixins";
 
 import SortBoard from "./SortBoard.vue";
 
@@ -25,11 +33,19 @@ export default {
   components: {
     SortBoard,
   },
+  mixins: [
+    bubbleSortMixin,
+    insertionSortMixin,
+    selectionSortMixin,
+    quickSortMixin,
+    mergeSortMixin,
+  ],
   data() {
     var self = this;
     return {
       inputArr: [],
-      index: 0,
+      alphaIdx: 0,
+      betaIdx: 0,
       sorts: [
         {
           key: "bubble",
@@ -75,22 +91,8 @@ export default {
   methods: {
     resetInput() {
       this.inputArr = [...UNSORTED];
-      this.index = 0;
-    },
-    bubbleSort() {
-      console.log("버블");
-    },
-    insertionSort() {
-      console.log("인");
-    },
-    selectionSort() {
-      console.log("셀");
-    },
-    quickSort() {
-      console.log("퀵");
-    },
-    mergeSort() {
-      console.log("머지");
+      this.alphaIdx = 0;
+      this.betaIdx = 0;
     },
   },
 };

@@ -7,7 +7,7 @@ const shuffle = (array) => {
 };
 
 export const getUnSorted = () => {
-  const arr = Array(30)
+  const arr = Array(20)
     .fill(undefined)
     .map((v, i) => i + 1);
 
@@ -15,5 +15,6 @@ export const getUnSorted = () => {
 };
 
 export const delay = (ms) => {
-  setTimeout(function() {}, ms);
+  return new Promise((resolve) => setTimeout(resolve, ms));
+  // delay(3000).then(() => alert('runs after 3 seconds'));
 };
