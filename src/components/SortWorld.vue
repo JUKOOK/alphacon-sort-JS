@@ -10,7 +10,7 @@
       {{ sort.name }}
     </button>
     <button class="reset" @click="resetInput">reset</button>
-    <SortBoard :input-list="inputArr" :alpha="alphaIdx" :beta="betaIdx" />
+    <SortBoard :input-list="inputArr" :compare="compare" :move="move" />
   </div>
 </template>
 
@@ -44,8 +44,8 @@ export default {
     var self = this;
     return {
       inputArr: [],
-      alphaIdx: 0,
-      betaIdx: 0,
+      compare: 0,
+      move: 0,
       sorts: [
         {
           key: "bubble",
@@ -91,8 +91,8 @@ export default {
   methods: {
     resetInput() {
       this.inputArr = [...UNSORTED];
-      this.alphaIdx = 0;
-      this.betaIdx = 0;
+      this.compare = 0;
+      this.move = 0;
     },
   },
 };

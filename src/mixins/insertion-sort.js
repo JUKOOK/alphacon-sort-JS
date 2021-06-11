@@ -5,9 +5,12 @@ export const insertionSortMixin = {
         let left = i - 1;
         const current = this.inputArr[i];
         while (left >= 0 && this.inputArr[left] > current) {
+          this.compare++;
+          this.move++;
           this.$set(this.inputArr, left + 1, this.inputArr[left]);
           left--;
         }
+        this.move++;
         this.$set(this.inputArr, left + 1, current);
       }
     },

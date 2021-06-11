@@ -1,7 +1,10 @@
 <template>
   <section class="sort-board">
+    <div class="count">
+      <p class="compare text">비교연산 : {{ compare }}</p>
+      <p class="move text">이동연산 : {{ move }}</p>
+    </div>
     <div class="bar" v-for="idx in 20" :key="idx" :style="barStyle(idx)" />
-    <div class="index-highlight"></div>
   </section>
 </template>
 
@@ -9,8 +12,8 @@
 export default {
   props: {
     inputList: Array,
-    alpha: Number,
-    beta: Number,
+    compare: Number,
+    move: Number,
   },
   computed: {
     list: {
@@ -18,14 +21,6 @@ export default {
         return this.inputList;
       },
       set() {},
-    },
-  },
-  watch: {
-    alpha(v) {
-      console.log(`alpha: ${v}`);
-    },
-    beta(v) {
-      console.log(`beta: ${v}`);
     },
   },
   methods: {
@@ -49,6 +44,18 @@ export default {
   position: relative;
   .flip-list-move {
     transition: transform 1s;
+  }
+  .count {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: -8rem;
+    .text {
+      width: 16rem;
+      margin-left: 2.4rem;
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
   }
 
   .bar {
