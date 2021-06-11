@@ -6,8 +6,8 @@ const shuffle = (array) => {
   return array;
 };
 
-export const getUnSorted = () => {
-  const arr = Array(20)
+export const getUnSorted = (cnt) => {
+  const arr = Array(cnt)
     .fill(undefined)
     .map((v, i) => i + 1);
 

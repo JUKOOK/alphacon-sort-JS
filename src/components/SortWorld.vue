@@ -9,13 +9,13 @@
     >
       {{ sort.name }}
     </button>
-    <button class="reset" @click="resetInput">reset</button>
+    <button class="btn-reset" @click="resetInput">리셋</button>
     <SortBoard :input-list="inputArr" :compare="compare" :move="move" />
   </div>
 </template>
 
 <script>
-const UNSORTED = getUnSorted();
+const UNSORTED = getUnSorted(20);
 
 import { getUnSorted } from "../utils";
 
@@ -69,17 +69,17 @@ export default {
           },
         },
         {
-          key: "quick",
-          name: "퀵정렬",
-          onClick: function() {
-            self.quickSort();
-          },
-        },
-        {
           key: "merge",
           name: "병합정렬",
           onClick: function() {
             self.mergeSort();
+          },
+        },
+        {
+          key: "quick",
+          name: "퀵정렬",
+          onClick: function() {
+            self.quickSort();
           },
         },
       ],
@@ -97,3 +97,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.title {
+  font-size: 2.4rem;
+}
+.btn-sort,
+.btn-reset {
+  width: auto;
+  padding: 4px 0.8rem;
+  margin: 2px 1.6rem;
+  font-size: 1.6rem;
+  border-radius: 4px;
+}
+</style>
